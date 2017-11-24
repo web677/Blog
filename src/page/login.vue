@@ -1,49 +1,52 @@
 
+
 <template>
-    <form class="base-form login-form" action="javascript:;">
-        <h3 class="base-title">Login</h3>
-        <input class="base-input" v-model="username" type="text" placeholder="请输入用户名" maxlength="20">
-        <input class="base-input" v-model="password" type="password" placeholder="请输入密码" maxlength="20">
-        <div class="link-box flex">
-            <router-link class="base-link flex-1" to="/regist">忘记密码</router-link>
-            <router-link class="base-link flex-1" to="/regist">注册</router-link>
-        </div>
-        <button class="base-btn" @click="login">登录</button>
-    </form>
+    <div>
+        <common-header
+            tab="user"
+        />
+        <center-form 
+            type="login"
+        />
+    </div>
+
 </template>
 
-
 <script>
+import Vue from "Vue"
+import Header from "../components/Common-header.vue"
+import Form from "../components/Center-form.vue"
+import axios from "axios"
+
+axios.interceptors.response.use( res => {return res.data})
+
+const loginUrl = "http://127.0.0.1:3000/center/ajaxlogin";
+
     export default {
         data () {
             return {
-                username: "",
-                password: ""
+                Bus: new Vue()
             }
         },
+        components: {
+            "common-header": Header,
+            "center-form" : Form
+        },
+
         computed: {
             
         },
         methods: {
-            login () {
-                if(this.username == ""){
-                    alert("请输入用户名！")
-                    return;
-                }
-                if(this.password == ""){
-                    alert("请输入输入密码！")
-                    return;
-                }
-
-                let confirmHandler = confirm("用户名：" + this.username + "\n密码：" + this.password)
-                if(confirmHandler){
-                    alert("登录成功！")
-                    window.location.href = "index"
-                }
-            }
+            
         },
         created () {
             document.title = "登录"
+            this.Bus.$on("submit", function(params){
+               axios.get(loginUrl,{params: params})
+                    .then(function(res){
+                        console.log(res)
+                    })
+            })
         }
     }
 </script>

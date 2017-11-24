@@ -28,8 +28,10 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
+      title: '一生一树',
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks: ["index"]
     }),
     new FriendlyErrorsPlugin()
   ]

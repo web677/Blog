@@ -5,8 +5,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import App from './App.vue'
-import routes from './router'
+import App from '../App.vue'
+import routes from '../routes/dev-router.js'
 
 const router = new VueRouter({
     mode: "history",

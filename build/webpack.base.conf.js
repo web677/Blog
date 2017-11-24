@@ -9,12 +9,17 @@ function resolve (dir) {
 }
 
 module.exports = {
-  entry: {
-    app: './src/main.js'
+  entry: process.env.NODE_ENV === 'production'
+  ? {
+    centerApp: './src/entry/center.js',
+    indexApp: './src/entry/index.js'
+  }
+  : {
+    index: './src/entry/dev-index.js'
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: './views/[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath

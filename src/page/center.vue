@@ -1,5 +1,7 @@
+
+
 <template>
-    <div>欢迎，这里是首页</div>
+    <div>欢迎</div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@
             
         },
         created () {
-            document.title = "登录"
+            document.title = "个人中心"
         }
     }
 </script>

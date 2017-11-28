@@ -1,4 +1,3 @@
-
 const fs = require("fs")
 const koaRouter = require("koa-router")()
 
@@ -9,10 +8,11 @@ const CenterLoginRegist = (ctx) => {
     ctx.response.body = fs.createReadStream('./View/center.html')
 }
 
+
 const AjaxCenterLogin = async (ctx) => {
 
     await CenterLoginModel(ctx.query)
-        .then(function(){
+        .then(function () {
             ctx.response.body = {
                 status: 1,
                 data: {
@@ -21,7 +21,7 @@ const AjaxCenterLogin = async (ctx) => {
                 info: "success"
             }
         })
-        .catch(function(errorInfo){
+        .catch(function (errorInfo) {
             ctx.response.body = {
                 status: 0,
                 data: {
@@ -35,12 +35,12 @@ const AjaxCenterLogin = async (ctx) => {
 
 const AjaxCenterRegist = async (ctx) => {
     ctx.response.body = {
-            status: 1,
-            data: {
-                go: ""
-            },
-            info: "success"
-        }
+        status: 1,
+        data: {
+            go: ""
+        },
+        info: "success"
+    }
 }
 
 

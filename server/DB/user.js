@@ -1,9 +1,11 @@
-const mongoose = require('mongoose')
-const config = require('../Config/index')
+var mongoose = require('mongoose')
+var config = require('../Config/index')
 
-const DB_URL = config.mongodb.host + "/" + config.mongodb.db
-
-mongoose.connect(DB_URL, {"user": config.mongodb.username, "pass": config.mongodb.password, useMongoClient: true})
+// const DB_URL = config.mongodb.host + ":" + config.mongodb.port + "/" + config.mongodb.db
+var DB_URL = "mongodb://laoli:laoli@127.0.0.1/Blog"
+console.log(DB_URL)
+// mongoose.connect(DB_URL, { "user": config.mongodb.username, "pass": config.mongodb.password, useMongoClient: true })
+var db = mongoose.createConnection(DB_URL)
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose 成功连接到 ' + DB_URL)
@@ -17,7 +19,7 @@ mongoose.connection.on('disconnected', function () {
     console.log('Mongoose 连接被拒绝')
 })
 
-const UserSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     name: String,
     username: {
         type: String,
@@ -38,9 +40,13 @@ const UserSchema = new mongoose.Schema({
         max: 120
     },
     city: String
+},{
+    collection: "user"
 })
 
+var User = db.model('user', userSchema)
 
-const User = mongoose.model('user', UserSchema)
-
+// User.find({}, function (param, doc) { console.log(param,doc)  })
 module.exports = User
+// db.createUser({user:'laoli',pwd:'laoli', roles:[{role:'readWrite', db:'Blog'}]})
+

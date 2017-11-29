@@ -12,13 +12,13 @@ const CenterLoginRegist = (ctx) => {
 const AjaxCenterLogin = async (ctx) => {
 
     await CenterLoginModel(ctx.query)
-        .then(function () {
+        .then(function (result) {
             ctx.response.body = {
                 status: 1,
                 data: {
                     go: "index.html"
                 },
-                info: "success"
+                info: result
             }
         })
         .catch(function (errorInfo) {

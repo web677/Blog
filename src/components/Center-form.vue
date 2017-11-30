@@ -6,7 +6,7 @@
         <input class="base-input" type="password" placeholder="请输入密码" maxlength="20" v-model="password">
         <input v-if="type !== 'login'" class="base-input" type="password" placeholder="请再次输入密码" maxlength="20" v-model="repassword">
         <div class="link-box flex">
-            <router-link v-if="type === 'login'" class="base-link flex-1" to="/regist">忘记密码</router-link>
+            <router-link v-if="type === 'login'" class="base-link flex-1" to="/center/regist">忘记密码</router-link>
             <router-link class="base-link flex-1" :to="formData.backLink">{{formData.backName}}</router-link>
         </div>
         <button class="base-btn" @click="submit">{{formData.btnName}}</button>

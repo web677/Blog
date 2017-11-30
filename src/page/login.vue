@@ -14,13 +14,14 @@
 
 <script>
 import Vue from "Vue"
-import Header from "../components/Common-header.vue"
-import Form from "../components/Center-form.vue"
+import { Message } from 'element-ui'
 import axios from "axios"
 
-axios.interceptors.response.use( res => {return res.data})
+import Header from "../components/Common-header.vue"
+import Form from "../components/Center-form.vue"
 
-const loginUrl = "http://127.0.0.1:3000/center/ajaxlogin";
+const loginUrl = "ajaxlogin";
+// const loginUrl = "http://ac-onsg2j7w.clouddn.com/8fe6ec917ee31aee0843.json"
 
     export default {
         data () {
@@ -41,10 +42,18 @@ const loginUrl = "http://127.0.0.1:3000/center/ajaxlogin";
         },
         created () {
             document.title = "登录"
-            this.Bus.$on("submit", function(params){
+            this.Bus.$on("submit", params =>{
                axios.get(loginUrl,{params: params})
-                    .then(function(res){
-                        console.log(res)
+                    .then(response => {
+                        const res = response.data
+                        if(res.status == 1){
+                            Message.success("登录成功")
+                            setTimeout(() => {
+                                window.location.href = res.data.go
+                            }, 1500);
+                        }else{
+                            Message.error(res.info)
+                        }
                     })
             })
         }

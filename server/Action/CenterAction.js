@@ -2,6 +2,7 @@ const fs = require("fs")
 const koaRouter = require("koa-router")()
 
 const CenterLoginModel = require("../Model/CenterLoginModel")
+const CenterRegistModel = require("../Model/CenterRegistModel")
 
 const CenterLoginRegist = (ctx) => {
     ctx.response.type = 'html'
@@ -10,37 +11,13 @@ const CenterLoginRegist = (ctx) => {
 
 
 const AjaxCenterLogin = async (ctx) => {
-
-    await CenterLoginModel(ctx.query)
-        .then(function (result) {
-            ctx.response.body = {
-                status: 1,
-                data: {
-                    go: "index.html"
-                },
-                info: result
-            }
-        })
-        .catch(function (errorInfo) {
-            ctx.response.body = {
-                status: 0,
-                data: {
-                    go: ""
-                },
-                info: errorInfo
-            }
-        })
-
+    let result = await CenterLoginModel(ctx.query)
+    ctx.response.body = result
 }
 
 const AjaxCenterRegist = async (ctx) => {
-    ctx.response.body = {
-        status: 1,
-        data: {
-            go: ""
-        },
-        info: "success"
-    }
+    let result = await CenterRegistModel(ctx.query)
+    ctx.response.body = result
 }
 
 

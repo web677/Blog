@@ -5,34 +5,47 @@ const User = require('../DB/user')
 
 const DB = require('./MongodbModel')
 
-function CenterLoginModel(data) {
+function ajaxReturn(status, data, info){
+    return {
+        status: status,
+        data: data,
+        info: info
+    }
+}
 
-    return new Promise((resolve,reject) => {
-        if (!InputValidation.isName(data.username)) {
-            reject ("用户名请输入汉字或英文字母！")
-            return
-        }
+const CenterLoginModel = async function(data) {
 
-        if (!InputValidation.isPwd(data.password)) {
-            reject ("密码请输入英文字母或数字！")
-            return
-        }
+    if (!InputValidation.isName(data.username)) {
+        return ajaxReturn(0, {}, "用户名请输入汉字或英文字母！")
+    }
 
-        DB.find({ username: data.username})
-            .then(result => {
-                DB.find(data)
-                    .then(result => {
-                        resolve("登录成功")
-                    })
-            })
-            .catch(err => {
-                console.log("err" + err)
-                err = err == 4001 ? "用户不存在" : err
-                reject(err)
-                return
-            })
+    if (!InputValidation.isPwd(data.password)) {
+        return ajaxReturn(0, {}, "密码请输入英文字母或数字！")
+    }
 
-    })
+    const result = await DB.find({ username: data.username })
+
+    if (result !== 4001 && result !== 2001) {
+        return ajaxReturn(0, {}, result)
+    }
+
+    if (result === 4001){
+        return ajaxReturn(0, {}, "用户不存在，请前往注册")
+    }
+
+    const result1 = await DB.find(data)
+
+    if (result !== 4001 && result !== 2001) {
+        return ajaxReturn(0, {}, result1)
+    }
+
+    if (result1 === 2001) {
+        return ajaxReturn(1, { go: "index" }, "登录成功")
+    }
+
+    if (result1 === 4001) {
+        return ajaxReturn(0, {}, "账号或密码输入错误")
+    }
 }
 
 module.exports = CenterLoginModel

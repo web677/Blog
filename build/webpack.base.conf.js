@@ -12,7 +12,8 @@ module.exports = {
   entry: process.env.NODE_ENV === 'production'
   ? {
     centerApp: './src/entry/center.js',
-    indexApp: './src/entry/index.js'
+    indexApp: './src/entry/index.js',
+    finderApp: './src/entry/finder.js',
   }
   : {
     index: './src/entry/dev-index.js'

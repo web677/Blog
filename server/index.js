@@ -6,10 +6,14 @@ const koaStatic = require("koa-static")("./")
 const koaCors = require("koa2-cors")()
 
 const CenterAction = require("./Action/CenterAction")
+const IndexAction = require("./Action/IndexAction")
+const FinderAction = require("./Action/FinderAction")
 
 
 koaRouter
+    .use("/", IndexAction.routes(), IndexAction.allowedMethods())
     .use("/center", CenterAction.routes(), CenterAction.allowedMethods())
+    .use("/finder", FinderAction.routes(), FinderAction.allowedMethods())
 
 
 app

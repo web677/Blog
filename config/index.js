@@ -10,6 +10,7 @@ module.exports = {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../server/View/index.html'),
     center: path.resolve(__dirname, '../server/View/center.html'),
+    finder: path.resolve(__dirname, '../server/View/finder.html'),
     assetsRoot: path.resolve(__dirname, '../server'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

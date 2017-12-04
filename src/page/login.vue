@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import Vue from "Vue"
-import { Message } from 'element-ui'
-import axios from "axios"
+    import Vue from "Vue"
+    import { Message } from 'element-ui'
+    import axios from "axios"
 
-import Header from "../components/Common-header.vue"
-import Form from "../components/Center-form.vue"
+    import Header from "../components/Common-header.vue"
+    import Form from "../components/Center-form.vue"
 
-const loginUrl = "ajaxlogin";
-// const loginUrl = "http://ac-onsg2j7w.clouddn.com/8fe6ec917ee31aee0843.json"
+    const loginUrl = "//" + window.location.host + "/center/ajaxlogin";
+    // const loginUrl = "http://ac-onsg2j7w.clouddn.com/8fe6ec917ee31aee0843.json"
 
     export default {
         data () {

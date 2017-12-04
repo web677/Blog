@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '../page/index.vue'
+import finder from '../page/finder.vue'
 import login from '../page/login.vue'
 import regist from '../page/regist.vue'
 import center from '../page/center.vue'
@@ -14,6 +15,9 @@ export default [
     },{
         path: '/index',
         component: index
+    }, {
+        path: '/finder',
+        component: finder
     },
     {
         path: '/center/',

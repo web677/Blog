@@ -3,7 +3,7 @@
     3001: 保存成功
     4001: 用户不存在
 */
-const User = require('../DB/user')
+const User = require('../../DB/user')
 
 module.exports = {
     add: async data => {

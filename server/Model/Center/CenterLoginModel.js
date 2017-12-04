@@ -1,9 +1,9 @@
 
-const CommonInputValidation = require('./CommonInputValidation')
+const CommonInputValidation = require('../Common/CommonInputValidation')
 const InputValidation = new CommonInputValidation()
-const User = require('../DB/user')
+const User = require('../../DB/user')
 
-const DB = require('./MongodbModel')
+const DB = require('../Common/MongodbModel')
 
 function ajaxReturn(status, data, info){
     return {

@@ -1,7 +1,7 @@
 <template>
     <nav class="nav flex">
         <a class="nav-item flex-1" :class="{on: tab == 'home'}" href="javascript:;">首页</a>
-        <a class="nav-item flex-1" :class="{on: tab == 'find'}" href="javascript:;">发现</a>
+        <a class="nav-item flex-1" :class="{on: tab == 'finder'}" href="javascript:;">发现</a>
         <a class="nav-item flex-1" :class="{on: tab == 'user'}" href="javascript:;">我的</a>
     </nav>
 </template>

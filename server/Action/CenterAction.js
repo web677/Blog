@@ -1,8 +1,8 @@
 const fs = require("fs")
 const koaRouter = require("koa-router")()
 
-const CenterLoginModel = require("../Model/CenterLoginModel")
-const CenterRegistModel = require("../Model/CenterRegistModel")
+const CenterLoginModel = require("../Model/Center/CenterLoginModel")
+const CenterRegistModel = require("../Model/Center/CenterRegistModel")
 
 const CenterLoginRegist = (ctx) => {
     ctx.response.type = 'html'

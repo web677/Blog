@@ -36,7 +36,7 @@ const CenterRegistModel = async function (data) {
     const result1 = await DB.add(data, User)
 
     if (result1 === 3001) {
-        return ajaxReturn(1, {go: "/index"}, "注册成功")
+        return ajaxReturn(1, {go: "index"}, "注册成功")
     }
 
     return ajaxReturn(0, {}, result1)

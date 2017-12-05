@@ -13,7 +13,7 @@ function ajaxReturn(status, data, info){
     }
 }
 
-const CenterLoginModel = async function(data) {
+const CenterLoginModel = async function(data, host) {
 
     if (!InputValidation.isName(data.username)) {
         return ajaxReturn(0, {}, "用户名请输入汉字或英文字母！")
@@ -40,7 +40,7 @@ const CenterLoginModel = async function(data) {
     }
 
     if (result1 === 2001) {
-        return ajaxReturn(1, { go: "index" }, "登录成功")
+        return ajaxReturn(1, { go: "//" + host + "/index" }, "登录成功")
     }
 
     if (result1 === 4001) {

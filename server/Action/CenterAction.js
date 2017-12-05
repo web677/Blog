@@ -11,12 +11,12 @@ const CenterLoginRegist = (ctx) => {
 
 
 const AjaxCenterLogin = async (ctx) => {
-    let result = await CenterLoginModel(ctx.query)
+    let result = await CenterLoginModel(ctx.query, ctx.host)
     ctx.response.body = result
 }
 
 const AjaxCenterRegist = async (ctx) => {
-    let result = await CenterRegistModel(ctx.query)
+    let result = await CenterRegistModel(ctx.query, ctx.host)
     ctx.response.body = result
 }
 

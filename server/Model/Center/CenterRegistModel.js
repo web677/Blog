@@ -13,7 +13,7 @@ function ajaxReturn(status, data, info) {
     }
 }
 
-const CenterRegistModel = async function (data) {
+const CenterRegistModel = async function (data, host) {
 
     if (!InputValidation.isName(data.username)) {
         return ajaxReturn(0, {}, "用户名请输入汉字或英文字母！")
@@ -36,7 +36,7 @@ const CenterRegistModel = async function (data) {
     const result1 = await DB.add(data, User)
 
     if (result1 === 3001) {
-        return ajaxReturn(1, {go: "index"}, "注册成功")
+        return ajaxReturn(1, { go: "//" + host + "/index" }, "注册成功")
     }
 
     return ajaxReturn(0, {}, result1)

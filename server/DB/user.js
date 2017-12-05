@@ -17,26 +17,11 @@ mongoose.connection
     })
 
 var userSchema = new mongoose.Schema({
-    name: String,
     username: {
         type: String,
         unique: true
     },
     password: String,
-    userid: {
-        type: String,
-        unique: true
-    },
-    mobile: {
-        type: String,
-        unique: true
-    },
-    age: {
-        type: Number,
-        min: 0,
-        max: 120
-    },
-    city: String
 },{
     collection: "user"
 })

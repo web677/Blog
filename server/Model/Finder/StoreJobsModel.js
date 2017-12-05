@@ -16,7 +16,6 @@ const StoreJobsModel = async (params) => {
     }
 
     let _result = await DB.find({ jobid: params.jobid }, Jobs)
-    console.log(_result)
 
     if (_result == 2001){
         return ajaxReturn(0, {}, "该职位已在收藏夹")

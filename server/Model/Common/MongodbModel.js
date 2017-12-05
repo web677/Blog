@@ -3,11 +3,10 @@
     3001: 保存成功
     4001: 用户不存在
 */
-const User = require('../../DB/user')
 
 module.exports = {
-    add: async data => {
-        let _user = new User(data)
+    add: async (data, Model) => {
+        let _user = new Model(data)
         let result = await _user.save()
             .then(CommandResult => {
                 return 3001
@@ -17,8 +16,8 @@ module.exports = {
             })
         return result
     },
-    delete: async query => {
-        let result = await User.remove(query)
+    delete: async (query, Model) => {
+        let result = await Model.remove(query)
             .then(CommandResult => {
                 if (CommandResult.result.n == 0) {
                     return 4001
@@ -32,8 +31,8 @@ module.exports = {
 
         return result
     },
-    find: async query => {
-        let result = await User.find(query)
+    find: async (query, Model) => {
+        let result = await Model.find(query)
             .then(result => {
                 if (result.length == 0) {
                     return 4001

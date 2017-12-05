@@ -1,8 +1,8 @@
 
 const CommonInputValidation = require('../Common/CommonInputValidation')
 const InputValidation = new CommonInputValidation()
-const User = require('../../DB/user')
 
+const User = require('../../DB/user')
 const DB = require('../Common/MongodbModel')
 
 function ajaxReturn(status, data, info){
@@ -23,7 +23,7 @@ const CenterLoginModel = async function(data) {
         return ajaxReturn(0, {}, "密码请输入英文字母或数字！")
     }
 
-    const result = await DB.find({ username: data.username })
+    const result = await DB.find({ username: data.username }, User)
 
     if (result !== 4001 && result !== 2001) {
         return ajaxReturn(0, {}, result)
@@ -33,7 +33,7 @@ const CenterLoginModel = async function(data) {
         return ajaxReturn(0, {}, "用户不存在，请前往注册")
     }
 
-    const result1 = await DB.find(data)
+    const result1 = await DB.find(data, User)
 
     if (result !== 4001 && result !== 2001) {
         return ajaxReturn(0, {}, result1)

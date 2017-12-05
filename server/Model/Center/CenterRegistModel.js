@@ -1,8 +1,8 @@
 
 const CommonInputValidation = require('../Common/CommonInputValidation')
 const InputValidation = new CommonInputValidation()
-const User = require('../../DB/user')
 
+const User = require('../../DB/user')
 const DB = require('../Common/MongodbModel')
 
 function ajaxReturn(status, data, info) {
@@ -27,16 +27,16 @@ const CenterRegistModel = async function (data) {
         return ajaxReturn(0, {}, "两次密码输入不一致！")
     }
 
-    const result = await DB.find({ username: data.username })
+    const result = await DB.find({ username: data.username }, User)
 
     if (result === 2001) {
         return ajaxReturn(0, {}, "用户已存在，请尝试登录")
     }
 
-    const result1 = await DB.add(data)
+    const result1 = await DB.add(data, User)
 
     if (result1 === 3001) {
-        return ajaxReturn(1, {go: "/index"}, "保存成功")
+        return ajaxReturn(1, {go: "/index"}, "注册成功")
     }
 
     return ajaxReturn(0, {}, result1)

@@ -4,6 +4,7 @@ const app = new Koa()
 const koaRouter = require("koa-router")()
 const koaStatic = require("koa-static")("./")
 const koaCors = require("koa2-cors")()
+const koaBodyParser = require("koa-bodyparser")()
 
 const CenterAction = require("./Action/CenterAction")
 const IndexAction = require("./Action/IndexAction")
@@ -18,6 +19,7 @@ koaRouter
 
 app
     .use(koaCors)
+    .use(koaBodyParser)
     .use(koaRouter.routes())
     .use(koaRouter.allowedMethods())
     .use(koaStatic)

@@ -39,7 +39,7 @@
             >
                 <template slot-scope="scope">
                     <el-button @click="checkDetail(scope.row.link)" type="text" size="small">查看详情</el-button>
-                    <el-button @click="store(scope.row.id)" type="text" size="small">收藏</el-button>
+                    <el-button @click="store(scope.row)" type="text" size="small">收藏</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -49,12 +49,13 @@
 <script>
 
     import Vue from "Vue"
-    import { Loading, Table, TableColumn, Tag, Button} from 'element-ui'
+    import { Loading, Message, Table, TableColumn, Tag, Button} from 'element-ui'
     import Header from "../components/Common-header.vue"
 
     import axios from "axios"
 
     const ajaxGetJobs = "//" + window.location.host + "/finder/ajaxgetjobs"
+    const ajaxStoreJobs = "//" + window.location.host + "/finder/ajaxstorejobs"
    
     export default {
         data () {
@@ -72,14 +73,29 @@
         },
 
         computed: {
-            
+
+
+
         },
         methods: {
             checkDetail(link){
                 window.open(link)
             },
-            store(id){
-                console.log(id)
+            store(data){
+                if(!data.jobid){
+                    Message.error("职位ID不存在")
+                    return
+                }
+                
+                axios.post(ajaxStoreJobs, data)
+                    .then(response => {
+                        const res = response.data
+                        if(res.status == 1){
+                            Message.success(res.info)
+                        }else{
+                            Message.error(res.info)
+                        }
+                    })
             }
         },
         created () {
@@ -92,6 +108,9 @@
                     const res = response.data
                     initLoading.close()
                     this.jobsList = res.data
+                })
+                .catch(err => {
+                    Message.error(err)
                 })
         }
     }

@@ -14,13 +14,13 @@ const GetJobsModel = async () => {
             $(".newlist").each((i, element) => {
                 let $this = $(element)
                 let ele = $this.find(".zwmc a").eq(0)
-                ele.text() && list.push({
+                ele.text() && ele.text().indexOf("出纳") == -1 && list.push({
                     name: ele.text(),
                     link: ele.attr("href"),
                     salary: $this.find(".zwyx").text(),
                     address: $this.find(".gzdd").text(),
                     company: $this.find(".gsmc").text(),
-                    id: $this.find("input[name='vacancyid']").val(),
+                    jobid: $this.find("input[name='vacancyid']").val(),
                     size: $this.find(".newlist_deatil_two span").eq(2).text().replace("公司规模：", "")
                 })
             })

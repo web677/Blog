@@ -4,6 +4,7 @@ const koaRouter = require("koa-router")()
 const CommonLoginModel = require("../Model/Common/CommonLoginModel")
 
 const CenterLoginModel = require("../Model/Center/CenterLoginModel")
+const CenterLogoutModel = require("../Model/Center/CenterLogoutModel")
 const CenterRegistModel = require("../Model/Center/CenterRegistModel")
 
 const CenterLoginRegist = async (ctx) => {
@@ -23,8 +24,8 @@ const AjaxCenterLogin = async (ctx) => {
 }
 
 const AjaxCenterLogout = async (ctx) => {
-    let result = await CommonLoginModel.doLogout(ctx.cookies.get("SESSIONID"), ctx)
-    ctx.redirect('../index')
+    let result = await CenterLogoutModel(ctx.cookies.get("SESSIONID"), ctx.host, ctx)
+    ctx.response.body = result
 }
 
 const AjaxCenterRegist = async (ctx) => {

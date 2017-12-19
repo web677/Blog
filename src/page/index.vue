@@ -24,6 +24,12 @@
         methods: {
             logout () {
                 axios.get(logoutUrl)
+                    .then(response => {
+                        const res = response.data
+                        if(res.status == 1){
+                            window.location.href = res.data.go
+                        }
+                    })
             }
         },
         created () {

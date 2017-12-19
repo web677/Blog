@@ -1,5 +1,6 @@
 
 const CommonInputValidation = require('../Common/CommonInputValidation')
+const CommonLoginModel = require('../Common/CommonLoginModel')
 const InputValidation = new CommonInputValidation()
 
 const User = require('../../DB/user')
@@ -13,7 +14,7 @@ function ajaxReturn(status, data, info){
     }
 }
 
-const CenterLoginModel = async function(data, host) {
+const CenterLoginModel = async function(data, host, ctx) {
 
     if (!InputValidation.isName(data.username)) {
         return ajaxReturn(0, {}, "用户名请输入汉字或英文字母！")
@@ -40,6 +41,7 @@ const CenterLoginModel = async function(data, host) {
     }
 
     if (result1 === 2001) {
+        CommonLoginModel.doLogin(data.username, ctx)
         return ajaxReturn(1, { go: "//" + host + "/index" }, "登录成功")
     }
 

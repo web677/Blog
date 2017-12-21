@@ -10,7 +10,7 @@ const Index = async (ctx) => {
         ctx.redirect('./center/login')
         return
     }
-    ctx.response.body = fs.createReadStream('./View/index.html')
+    ctx.response.body = fs.createReadStream('./books/_book/index.html')
 }
 
 koaRouter

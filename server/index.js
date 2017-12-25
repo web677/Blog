@@ -10,14 +10,12 @@ const session = require('koa-session2')
 const Store = require('./Model/Common/SessionRedisStore')
 
 const CenterAction = require("./Action/CenterAction")
-const BooksAction = require("./Action/BooksAction")
 const IndexAction = require("./Action/IndexAction")
 const FinderAction = require("./Action/FinderAction")
 
 
 koaRouter
     .use("/", IndexAction.routes(), IndexAction.allowedMethods())
-    .use("/books", BooksAction.routes(), BooksAction.allowedMethods())
     .use("/center", CenterAction.routes(), CenterAction.allowedMethods())
     .use("/finder", FinderAction.routes(), FinderAction.allowedMethods())
 

@@ -14,8 +14,9 @@ const GetJobsModel = async () => {
             $(".newlist").each((i, element) => {
                 let $this = $(element)
                 let ele = $this.find(".zwmc a").eq(0)
-                ele.text() && ele.text().indexOf("出纳") == -1 && list.push({
-                    name: ele.text(),
+                let name = ele.text().toLowerCase()
+                name && (name.indexOf("前端") > -1 || name.indexOf("js") > -1 || name.indexOf("html") > -1) && list.push({
+                    name: name,
                     link: ele.attr("href"),
                     salary: $this.find(".zwyx").text(),
                     address: $this.find(".gzdd").text(),
